@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -37,6 +38,22 @@ namespace ASP_NET_REACT_CRUD_Project.Migrations
                 {
                     table.PrimaryKey("PK_Race", x => x.id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Uzytkownicy",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Login = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DataUtworzenia = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Uzytkownicy", x => x.ID);
+                });
         }
 
         /// <inheritdoc />
@@ -47,6 +64,9 @@ namespace ASP_NET_REACT_CRUD_Project.Migrations
 
             migrationBuilder.DropTable(
                 name: "Race");
+
+            migrationBuilder.DropTable(
+                name: "Uzytkownicy");
         }
     }
 }
